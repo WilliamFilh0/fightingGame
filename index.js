@@ -24,6 +24,22 @@ class Sprite {
   update() {
     this.draw()
 
+    // Impede que o sprite saia dos limites horizontais da tela
+    if (this.position.x < 0) {
+      this.position.x = 0
+    } else if (this.position.x + 50 > canvas.width) {
+      this.position.x = canvas.width - 50
+    }
+
+    // Impede que o sprite saia dos limites verticais da tela
+    if (this.position.y < 0) {
+      this.position.y = 0
+      this.velocity.y = 0
+    } else if (this.position.y + this.height > canvas.height) {
+      this.position.y = canvas.height - this.height
+      this.velocity.y = 0
+    }
+
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y
 
