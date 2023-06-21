@@ -14,11 +14,20 @@ class Sprite {
     this.velocity = velocity
     this.height = 150
     this.lastKey = null // Adiciona a propriedade lastKey para cada sprite
+    this.attackBox = {
+      position: this.position,
+      width: 100,
+      height: 50
+    }
   }
 
   draw() {
     c.fillStyle = 'red'
     c.fillRect(this.position.x, this.position.y, 50, this.height)
+
+    //attack box
+    c.fillStyle = 'green'
+    c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
   }
 
   update() {
