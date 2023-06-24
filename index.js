@@ -144,7 +144,7 @@ function rectangularCollision({ rectanlel1, rectanlel2 }) {
   );
 }
 //timer function
-let timer = 10
+let timer = 5
 function decreaseTimer() {
   if (timer > 0) {
     setTimeout(decreaseTimer, 1000)
@@ -152,10 +152,20 @@ function decreaseTimer() {
     document.querySelector('#timer').innerHTML = timer
   }
 
-if(PaymentRequest.health=== enemy.health){
-  console.log('tie ')
-}
+  if (timer === 0) {
+    document.querySelector('#displayText').style.display = 'flex'
+    if (PaymentRequest.health === enemy.health) {
+      document.querySelector('#displayText').innerHTML = 'Tie'
 
+    } else if (player.health > enemy.health) {
+      document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
+    }else if (player.health < enemy.health) {
+      document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
+    }
+
+    
+
+  }
 }
 
 decreaseTimer()
