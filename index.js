@@ -23,7 +23,7 @@ class Sprite {
       offset,
       width: 100,
       height: 50
-      }
+    }
     this.color = color
     this.isAttacking
     this.health = 100
@@ -34,21 +34,21 @@ class Sprite {
     c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
     //attack box
-    if(this.isAttacking){
-    c.fillStyle = 'green'
-    c.fillRect(
-      this.attackBox.position.x,
-      this.attackBox.position.y,
-      this.attackBox.width,
-      this.attackBox.height,
-      
-    )
-   }
+    if (this.isAttacking) {
+      c.fillStyle = 'green'
+      c.fillRect(
+        this.attackBox.position.x,
+        this.attackBox.position.y,
+        this.attackBox.width,
+        this.attackBox.height,
+
+      )
+    }
   }
 
   update() {
     this.draw()
-    this.attackBox.position.x = this.position.x  + this.attackBox.offset.x
+    this.attackBox.position.x = this.position.x + this.attackBox.offset.x
     this.attackBox.position.y = this.position.y
 
     // Impede que o sprite saia dos limites horizontais da tela
@@ -135,7 +135,7 @@ const keys = {
     pressed: false
   }
 }
-function rectangularCollision({ rectanlel1,rectanlel2}) {
+function rectangularCollision({ rectanlel1, rectanlel2 }) {
   return (
     rectanlel1.attackBox.position.x + rectanlel1.attackBox.width >= rectanlel2.position.x &&
     rectanlel1.attackBox.position.x <= rectanlel2.position.x + rectanlel2.width &&
@@ -143,13 +143,19 @@ function rectangularCollision({ rectanlel1,rectanlel2}) {
     rectanlel1.attackBox.position.y <= rectanlel2.position.y + rectanlel2.height
   );
 }
-
+//timer function
 let timer = 10
-function decreaseTimer(){
- setTimeout(decreaseTimer, 1000)
-  if(timer > 0) {
-    timer--}
+function decreaseTimer() {
+  if (timer > 0) {
+    setTimeout(decreaseTimer, 1000)
+    timer--
     document.querySelector('#timer').innerHTML = timer
+  }
+
+if(PaymentRequest.health=== enemy.health){
+  console.log('tie')
+}
+
 }
 
 decreaseTimer()
@@ -180,35 +186,35 @@ function animate() {
 
   // detect for colision
   if (
-   rectangularCollision({
-    rectanlel1:player,
-    rectanlel2:enemy
-   }) &&
+    rectangularCollision({
+      rectanlel1: player,
+      rectanlel2: enemy
+    }) &&
     player.isAttacking
   ) {
     player.isAttacking = false
     enemy.health -= 20
-    document.querySelector('#enemyHealth').style.width= enemy.health + '%'
+    document.querySelector('#enemyHealth').style.width = enemy.health + '%'
   }
 
   if (
     rectangularCollision({
-     rectanlel1:enemy,
-     rectanlel2:player
+      rectanlel1: enemy,
+      rectanlel2: player
     }) &&
-     enemy.isAttacking
-   ) {
-     enemy.isAttacking = false
-     player.health -= 20
-     document.querySelector('#playerHealth').style.width= player.health + '%'
-   }
+    enemy.isAttacking
+  ) {
+    enemy.isAttacking = false
+    player.health -= 20
+    document.querySelector('#playerHealth').style.width = player.health + '%'
+  }
 }
 
 
 animate()
 
 window.addEventListener('keydown', (event) => {
-  
+
   switch (event.key) {
     case 'd':
       keys.d.pressed = true
@@ -241,7 +247,7 @@ window.addEventListener('keydown', (event) => {
       break
 
   }
-  
+
 })
 
 window.addEventListener('keyup', (event) => {
@@ -263,7 +269,7 @@ window.addEventListener('keyup', (event) => {
       keys.ArrowLeft.pressed = false
       break
   }
- 
+
 })
 
-//1:34:28
+//1:38:56
