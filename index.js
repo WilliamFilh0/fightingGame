@@ -153,7 +153,7 @@ function decreaseTimer() {
   }
 
 if(PaymentRequest.health=== enemy.health){
-  console.log('tie')
+  console.log('tie ')
 }
 
 }
