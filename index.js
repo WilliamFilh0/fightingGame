@@ -145,7 +145,8 @@ function rectangularCollision({ rectanlel1, rectanlel2 }) {
 }
 
 //function that determines who wins
-function determineWinner({ player, enemy }) {
+function determineWinner({ player, enemy,TimerId }) {
+  cancelTimeout(TimerId)
   document.querySelector('#displayText').style.display = 'flex'
   if (PaymentRequest.health === enemy.health) {
     document.querySelector('#displayText').innerHTML = 'Tie'
@@ -159,9 +160,10 @@ function determineWinner({ player, enemy }) {
 
 //timer function
 let timer = 60
+let TimerId
 function decreaseTimer() {
   if (timer > 0) {
-    setTimeout(decreaseTimer, 1000)
+    TimerId = setTimeout(decreaseTimer, 1000)
     timer--
     document.querySelector('#timer').innerHTML = timer
   }
