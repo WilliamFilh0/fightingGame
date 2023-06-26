@@ -14,7 +14,7 @@ class Sprite {
     this.velocity = velocity
     this.width = 50
     this.height = 150
-    this.lastKey = null // Adiciona a propriedade lastKey para cada sprite
+    this.lastKey = null // Add lastKey property to each sprite
     this.attackBox = {
       position: {
         x: this.position.x,
@@ -51,14 +51,14 @@ class Sprite {
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x
     this.attackBox.position.y = this.position.y
 
-    // Impede que o sprite saia dos limites horizontais da tela
+    // Prevents the sprite from leaving the horizontal boundaries of the screen
     if (this.position.x < 0) {
       this.position.x = 0
     } else if (this.position.x + 50 > canvas.width) {
       this.position.x = canvas.width - 50
     }
 
-    // Impede que o sprite saia dos limites verticais da tela
+    // Prevents the sprite from leaving the vertical limits of the screen
     if (this.position.y < 0) {
       this.position.y = 0
       this.velocity.y = 0
@@ -293,4 +293,3 @@ window.addEventListener('keyup', (event) => {
 
 })
 
-//1:49:14
