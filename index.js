@@ -11,9 +11,14 @@ const gravity = 0.7
 
 
 const player = new Fighter({
-  position: {
+  /*position: {
     x: 0,
     y: 0
+  },*/
+  //posição inicial do jogador
+  position: {
+    x: canvas.width / 4 - 25,
+    y: canvas.height / 2 - 75
   },
   velocity: {
     x: 0,
@@ -26,9 +31,14 @@ const player = new Fighter({
 })
 
 const enemy = new Fighter({
-  position: {
+  /*position: {
     x: 400,
     y: 100
+  },*/
+  //posição inicial do inimigo
+  position: {
+    x: (canvas.width * 3) / 4 - 25,
+    y: canvas.height / 2 - 75
   },
   velocity: {
     x: 0,

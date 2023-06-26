@@ -3,11 +3,11 @@ class Sprite {
     this.position = position
     this.width = 50
     this.height = 150
-    
+
   }
 
   draw() {
-    
+
   }
 
   update() {
@@ -58,11 +58,12 @@ class Fighter {
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x
     this.attackBox.position.y = this.position.y
 
-    // Prevents the sprite from leaving the horizontal boundaries of the screen
+    
+    // Impede que o sprite saia dos limites horizontais da tela
     if (this.position.x < 0) {
       this.position.x = 0
-    } else if (this.position.x + 50 > canvas.width) {
-      this.position.x = canvas.width - 50
+    } else if (this.position.x + this.width > canvas.width) {
+      this.position.x = canvas.width - this.width
     }
 
     // Prevents the sprite from leaving the vertical limits of the screen
