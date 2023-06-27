@@ -5,9 +5,11 @@ class Sprite {
     this.height = 150
     this.image = new Image()
     this.image.src = imageSrc
-    this.scale = scale
+    this.scale = scale //image size
     this.framesMax = framesMax
-    this.frameCurrent = 0
+    this.frameCurrent = 0 //stores the index of the current frame being displayed in the animation
+    this.framesElapsed = 0//Stores the number of frames that have passed since the last frame change. It is incremented with each update.
+    this.framesHold = 5//: Defines the number of frames that must pass before updating frameCurrent. When framesElapsed reaches a value that is an exact multiple of framesHold, the animation advances to the next frame.
   }
 
   draw() {
@@ -26,14 +28,20 @@ class Sprite {
 
   update() {
     this.draw()
-    //shop animation repeat loop
-    if (this.frameCurrent < this.framesMax - 1) {
-      this.frameCurrent++
-    } else {
-      this.frameCurrent = 0
+    this.framesElapsed++
+
+    //checks if enough time has passed to update the frame
+    if (this.framesElapsed % this.framesHold === 0) {
+      //shop animation repeat loop
+      if (this.frameCurrent < this.framesMax - 1) {
+        this.frameCurrent++
+      } else {
+        this.frameCurrent = 0
+      }
     }
   }
 }
+
 
 class Fighter {
   constructor({ position, velocity, color = 'red', offset }) {
@@ -43,11 +51,12 @@ class Fighter {
     this.height = 150
     this.lastKey = null // Add lastKey property to each sprite
     this.attackBox = {
+      //Represents the fighter's position in space, with x and y coordinates.
       position: {
         x: this.position.x,
         y: this.position.y
       },
-      offset,
+      offset, //It is an object that defines an offset for the attack box in relation to the fighter's position.
       width: 100,
       height: 50
     }
@@ -60,7 +69,7 @@ class Fighter {
     c.fillStyle = this.color
     c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
-    //attack box
+    //attack box 
     if (this.isAttacking) {
       c.fillStyle = 'green'
       c.fillRect(
