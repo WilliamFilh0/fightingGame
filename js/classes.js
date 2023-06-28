@@ -43,8 +43,15 @@ class Sprite {
 }
 
 
-class Fighter {
-  constructor({ position, velocity, color = 'red', offset }) {
+class Fighter extends Sprite{
+  constructor({ position, velocity, color = 'red', offset, imageSrc, scale = 1, framesMax = 1  }) {
+    super({
+      position,
+      imageSrc,
+      scale,
+      framesMax,
+      
+    })
     this.position = position
     this.velocity = velocity
     this.width = 50
@@ -63,25 +70,12 @@ class Fighter {
     this.color = color
     this.isAttacking
     this.health = 100
+    this.frameCurrent = 0 //stores the index of the current frame being displayed in the animation
+    this.framesElapsed = 0//Stores the number of frames that have passed since the last frame change. It is incremented with each update.
+    this.framesHold = 5
   }
 
-  draw() {
-    c.fillStyle = this.color
-    c.fillRect(this.position.x, this.position.y, this.width, this.height)
-
-    //attack box 
-    if (this.isAttacking) {
-      c.fillStyle = 'green'
-      c.fillRect(
-        this.attackBox.position.x,
-        this.attackBox.position.y,
-        this.attackBox.width,
-        this.attackBox.height,
-
-      )
-    }
-  }
-
+  
   update() {
     this.draw()
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x
@@ -123,3 +117,4 @@ class Fighter {
 
   }
 }
+//2;23;14
