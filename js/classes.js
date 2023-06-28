@@ -60,8 +60,8 @@ class Fighter extends Sprite {
     imageSrc,
     scale = 1,
     framesMax = 1,
-    offset = { x: 0, y: 0 }
-
+    offset = { x: 0, y: 0 },
+    sprites
   }) {
     super({
       position,
@@ -91,6 +91,13 @@ class Fighter extends Sprite {
     this.frameCurrent = 0 //stores the index of the current frame being displayed in the animation
     this.framesElapsed = 0//Stores the number of frames that have passed since the last frame change. It is incremented with each update.
     this.framesHold = 5
+    this.sprites = sprites
+
+    for ( const sprite in sprites){
+      sprites[sprite].image = new Image()
+      sprites[sprite].image.src =  sprites[sprite].imageSrc
+      
+    }
   }
 
 
