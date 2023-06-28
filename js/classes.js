@@ -1,5 +1,10 @@
 class Sprite {
-  constructor({ position, imageSrc, scale = 1, framesMax = 1 }) {
+  constructor({ position,
+    imageSrc,
+    scale = 1,
+    framesMax = 1,
+    offset = { x: 0, y: 0 }
+  }) {
     this.position = position
     this.width = 50
     this.height = 150
@@ -10,6 +15,7 @@ class Sprite {
     this.frameCurrent = 0 //stores the index of the current frame being displayed in the animation
     this.framesElapsed = 0//Stores the number of frames that have passed since the last frame change. It is incremented with each update.
     this.framesHold = 5//: Defines the number of frames that must pass before updating frameCurrent. When framesElapsed reaches a value that is an exact multiple of framesHold, the animation advances to the next frame.
+    this.offset = offset
   }
 
   draw() {
@@ -19,15 +25,14 @@ class Sprite {
       0,
       this.image.width / this.framesMax,
       this.image.height,
-      this.position.x,
-      this.position.y,
+      this.position.x - this.offset.x,
+      this.position.y - this.offset.y,
       (this.image.width / this.framesMax) * this.scale,
       this.image.height * this.scale
     )
   }
 
-  update() {
-    this.draw()
+  animateFrames(){
     this.framesElapsed++
 
     //checks if enough time has passed to update the frame
@@ -40,17 +45,30 @@ class Sprite {
       }
     }
   }
+
+  update() {
+    this.draw()
+    this.animateFrames()
+  }
 }
 
 
-class Fighter extends Sprite{
-  constructor({ position, velocity, color = 'red', offset, imageSrc, scale = 1, framesMax = 1  }) {
+class Fighter extends Sprite {
+  constructor({ position,
+    velocity,
+    color = 'red',
+    imageSrc,
+    scale = 1,
+    framesMax = 1,
+    offset = { x: 0, y: 0 }
+
+  }) {
     super({
       position,
       imageSrc,
       scale,
       framesMax,
-      
+      offset
     })
     this.position = position
     this.velocity = velocity
@@ -75,9 +93,11 @@ class Fighter extends Sprite{
     this.framesHold = 5
   }
 
-  
+
   update() {
     this.draw()
+    this.animateFrames()
+
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x
     this.attackBox.position.y = this.position.y
 
