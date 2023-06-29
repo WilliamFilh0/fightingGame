@@ -32,7 +32,7 @@ class Sprite {
     )
   }
 
-  animateFrames(){
+  animateFrames() {
     this.framesElapsed++
 
     //checks if enough time has passed to update the frame
@@ -93,10 +93,10 @@ class Fighter extends Sprite {
     this.framesHold = 5
     this.sprites = sprites
 
-    for ( const sprite in sprites){
+    for (const sprite in sprites) {
       sprites[sprite].image = new Image()
-      sprites[sprite].image.src =  sprites[sprite].imageSrc
-      
+      sprites[sprite].image.src = sprites[sprite].imageSrc
+
     }
   }
 
@@ -140,8 +140,19 @@ class Fighter extends Sprite {
     setTimeout(() => {
       this.isAttacking = false
     }, 100);
-
-
   }
+
+  switchSprite(sprite) {
+    switch (sprite) {
+      case 'idle':
+        break;
+      case 'run':
+        break;
+      case 'jump':
+        break;
+
+    }
+  }
+
 }
 //2;23;14
