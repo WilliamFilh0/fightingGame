@@ -61,7 +61,8 @@ class Fighter extends Sprite {
     scale = 1,
     framesMax = 1,
     offset = { x: 0, y: 0 },
-    sprites
+    sprites,
+    attackBox = {offset: {}, width: undefined, height: undefined}
   }) {
     super({
       position,
@@ -81,9 +82,9 @@ class Fighter extends Sprite {
         x: this.position.x,
         y: this.position.y
       },
-      offset, //It is an object that defines an offset for the attack box in relation to the fighter's position.
-      width: 100,
-      height: 50
+      offset: attackBox.offset, //It is an object that defines an offset for the attack box in relation to the fighter's position.
+      width: attackBox.width,
+      height: attackBox.height
     }
     this.color = color
     this.isAttacking
@@ -105,8 +106,14 @@ class Fighter extends Sprite {
     this.draw()
     this.animateFrames()
 
+    //attack boxes
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x
-    this.attackBox.position.y = this.position.y
+    this.attackBox.position.y = this.position.y + this.attackBox.offset.y
+
+    c.fillRect(this.attackBox.position.x,
+       this.attackBox.position.y,
+        this.attackBox.width,
+         this.attackBox.height)
 
 
     // Impede que o sprite saia dos limites horizontais da tela
