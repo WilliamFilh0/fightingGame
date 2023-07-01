@@ -218,11 +218,17 @@ function animate() {
       rectanlel1: player,
       rectanlel2: enemy
     }) &&
-    player.isAttacking
+    player.isAttacking && player.frameCurrent === 4
   ) {
     player.isAttacking = false
     enemy.health -= 20
     document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+  }
+
+  // if player misses
+  if(player.isAttacking && player.frameCurrent === 4){
+    player.isAttacking = false
+    
   }
 
 
