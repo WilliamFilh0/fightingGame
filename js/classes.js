@@ -62,7 +62,7 @@ class Fighter extends Sprite {
     framesMax = 1,
     offset = { x: 0, y: 0 },
     sprites,
-    attackBox = {offset: {}, width: undefined, height: undefined}
+    attackBox = { offset: {}, width: undefined, height: undefined }
   }) {
     super({
       position,
@@ -110,10 +110,11 @@ class Fighter extends Sprite {
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x
     this.attackBox.position.y = this.position.y + this.attackBox.offset.y
 
-    c.fillRect(this.attackBox.position.x,
-       this.attackBox.position.y,
-        this.attackBox.width,
-         this.attackBox.height)
+    //draw the attack box
+    /*c.fillRect(this.attackBox.position.x,
+      this.attackBox.position.y,
+      this.attackBox.width,
+      this.attackBox.height)*/
 
 
     // Impede que o sprite saia dos limites horizontais da tela
@@ -147,14 +148,14 @@ class Fighter extends Sprite {
   attack() {
     this.switchSprite('attack1')
     this.isAttacking = true;
-   
+
   }
 
 
   switchSprite(sprite) {
     if (
-      this.image === this.sprites.attack1.image && this.frameCurrent < this.sprites.attack1.framesMax -1) return
-      
+      this.image === this.sprites.attack1.image && this.frameCurrent < this.sprites.attack1.framesMax - 1) return
+
     switch (sprite) {
       case 'idle':
         if (this.image !== this.sprites.idle.image) {

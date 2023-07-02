@@ -78,9 +78,9 @@ const player = new Fighter({
     offset: {
       x: 100,
       y: 50
-    },
-    width: 140,
-    height: 50
+    },  
+    width: 140, 
+    height: 50 
   }
 })
 
@@ -238,12 +238,18 @@ function animate() {
       rectanlel1: enemy,
       rectanlel2: player
     }) &&
-    enemy.isAttacking
+    enemy.isAttacking && enemy.frameCurrent === 2
   ) {
     enemy.isAttacking = false
     player.health -= 20
     document.querySelector('#playerHealth').style.width = player.health + '%'
   }
+  // if enemy misses
+  if(enemy.isAttacking && enemy.frameCurrent === 2){
+    enemy.isAttacking = false
+    
+  }
+
   // end game based on health
   if (enemy.health <= 0 || player.health <= 0) {
     determineWinner({ player, enemy, timerId })
@@ -313,5 +319,5 @@ window.addEventListener('keyup', (event) => {
 
 })
 
-//03:07:19
+//03:18:46
 
