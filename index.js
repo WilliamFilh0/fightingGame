@@ -237,11 +237,9 @@ function animate() {
   // if player misses
   if(player.isAttacking && player.frameCurrent === 4){
     player.isAttacking = false
-    
   }
 
-
-
+  //this is where our player gets hit
   if (
     rectangularCollision({
       rectanlel1: enemy,
@@ -249,8 +247,8 @@ function animate() {
     }) &&
     enemy.isAttacking && enemy.frameCurrent === 2
   ) {
+    player.takeHit()
     enemy.isAttacking = false
-    player.health -= 20
     document.querySelector('#playerHealth').style.width = player.health + '%'
   }
   // if enemy misses
