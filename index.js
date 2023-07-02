@@ -131,6 +131,10 @@ const enemy = new Fighter({
     attack1: {
       imageSrc: './img/kenji/Attack1.png',
       framesMax: 4
+    },
+    takeHit: {
+      imageSrc: './img/kenji/Take hit.png',
+      framesMax: 3
     }
   },
   attackBox: {
@@ -212,7 +216,7 @@ function animate() {
     enemy.switchSprite('fall')
   }
 
-  // detect for colision
+  // detect for colision & enemy gets hits
   if (
     rectangularCollision({
       rectanlel1: player,
@@ -220,8 +224,9 @@ function animate() {
     }) &&
     player.isAttacking && player.frameCurrent === 4
   ) {
+    enemy.takeHit()
     player.isAttacking = false
-    enemy.health -= 20
+    
     document.querySelector('#enemyHealth').style.width = enemy.health + '%'
   }
 
@@ -319,5 +324,5 @@ window.addEventListener('keyup', (event) => {
 
 })
 
-//03:18:46
+
 
