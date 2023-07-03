@@ -113,7 +113,7 @@ const enemy = new Fighter({
   scale: 2.5,
   offset: {
     x: 215,
-    y: 167
+    y: 157
   },
   sprites: {
     idle: {
@@ -139,6 +139,9 @@ const enemy = new Fighter({
     takeHit: {
       imageSrc: './img/kenji/Take hit.png',
       framesMax: 3
+    },
+    death: {
+      
     }
   },
   attackBox: {
