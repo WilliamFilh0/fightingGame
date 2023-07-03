@@ -93,6 +93,8 @@ class Fighter extends Sprite {
     this.framesElapsed = 0//Stores the number of frames that have passed since the last frame change. It is incremented with each update.
     this.framesHold = 5
     this.sprites = sprites
+    this.dead = false
+
 
     for (const sprite in sprites) {
       sprites[sprite].image = new Image()
@@ -104,6 +106,7 @@ class Fighter extends Sprite {
 
   update() {
     this.draw()
+    if(!this.dead) this.animateFrames()
     this.animateFrames()
 
     //attack boxes
@@ -150,13 +153,26 @@ class Fighter extends Sprite {
     this.isAttacking = true;
   }
 
+ 
   takeHit() {
-    this.switchSprite('takeHit')
     this.health -= 20
+
+    if (this.health <= 0) {
+      this.switchSprite('death')
+    } else this.switchSprite('takeHit')
   }
+  
 
 
   switchSprite(sprite) {
+
+    if (this.image === this.sprites.death.image) {
+      if (this.framesCurrent === this.sprites.death.framesMax - 1)
+        this.dead = true
+      return
+    }
+    
+
     // overriding all other animations with the attack animation
     if (
       this.image === this.sprites.attack1.image && this.frameCurrent < this.sprites.attack1.framesMax - 1) return
@@ -216,6 +232,14 @@ class Fighter extends Sprite {
           this.frameCurrent = 0
         }
         break;
+
+        case 'death':
+          if (this.image !== this.sprites.death.image) {
+            this.image = this.sprites.death.image
+            this.framesMax = this.sprites.death.framesMax
+            this.framesCurrent = 0
+          }
+          break
     }
   }
 
