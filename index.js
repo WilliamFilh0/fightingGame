@@ -292,7 +292,6 @@ window.addEventListener('keydown', (event) => {
         player.attack()
         break
     }
-
   }
 
   if (!enemy.dead) {
@@ -335,7 +334,6 @@ window.addEventListener('keyup', (event) => {
       keys.ArrowLeft.pressed = false
       break
   }
-
 })
 
 
